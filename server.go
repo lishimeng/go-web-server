@@ -81,7 +81,7 @@ func (s *Server) AddHttpHandler(schema string, pathGroup string, handler http.Ha
 }
 
 func (s *Server) Start(ctx context.Context) error {
-	if err := s.primaryProxy.Build(); err != nil {
+	if err := s.primaryProxy.Configure(iris.WithCharset("UTF-8")).Build(); err != nil {
 		return err
 	}
 	s.AddHttpHandler(s.primarySchema, s.primaryPath, s.primaryProxy)
